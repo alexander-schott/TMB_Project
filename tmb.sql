@@ -5,11 +5,11 @@ USE TMB;
 CREATE TABLE User
 (
     ID varchar(255),
-    first_name varchar(255),
+    first_name varchar(255) NOT NULL,
     minit char(1),
-    last_name varchar(255),
+    last_name varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
-    passenger_email varchar(255),
+    passenger_email varchar(255) NOT NULL,
     PRIMARY KEY (ID)
 );
 
@@ -105,4 +105,4 @@ CREATE TABLE Station_On_Line
     PRIMARY KEY(station_name, line_name),
     FOREIGN KEY(station_name) REFERENCES Station(name),
     FOREIGN KEY(line_name) REFERENCES Line(name)
-)
+);
