@@ -17,6 +17,7 @@ CREATE TABLE Admin
 (
     ID varchar(255) PRIMARY KEY,
     FOREIGN KEY(ID) REFERENCES User(ID)
+		ON DELETE CASCADE
 );
 
 CREATE TABLE Station
@@ -45,6 +46,7 @@ CREATE TABLE Card
     expiration_date Date,
     PRIMARY KEY (user_ID, type, purchase_date_time),
     FOREIGN KEY(user_ID) REFERENCES User(ID)
+		ON DELETE CASCADE
 );
 
 CREATE TABLE Trip
@@ -57,9 +59,12 @@ CREATE TABLE Trip
     from_station_name varchar(255) NOT NULL,
     to_station_name varchar(255),
     PRIMARY KEY(user_ID, card_type, card_purchase_date_time, start_date_time),
-    FOREIGN KEY (from_station_name) REFERENCES Station(name),
-    FOREIGN KEY (to_station_name) REFERENCES Station(name),
+    FOREIGN KEY (from_station_name) REFERENCES Station(name)
+		ON DELETE CASCADE,
+    FOREIGN KEY (to_station_name) REFERENCES Station(name)
+		ON DELETE CASCADE,
     FOREIGN KEY (user_ID, card_type, card_purchase_date_time) REFERENCES Card(user_ID, type, purchase_date_time)
+		ON DELETE CASCADE
 );
 
 CREATE TABLE Review
@@ -74,9 +79,12 @@ CREATE TABLE Review
     edit_timestamp Datetime,
     station_name varchar(255) NOT NULL,
     PRIMARY KEY (passenger_ID, rid),
-    FOREIGN KEY(passenger_ID) REFERENCES User(ID),
-    FOREIGN KEY(approver_ID) REFERENCES Admin(ID),
+    FOREIGN KEY(passenger_ID) REFERENCES User(ID)
+		ON DELETE CASCADE,
+    FOREIGN KEY(approver_ID) REFERENCES Admin(ID)
+		ON DELETE CASCADE,
     FOREIGN KEY(station_name) REFERENCES Station(name)
+		ON DELETE CASCADE
 );
 
 CREATE TABLE Admin_Add_Line
