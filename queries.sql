@@ -2,6 +2,10 @@
 SELECT ID, password FROM User
 	WHERE ID = "Devin";
     
+#Check if Admin
+SELECT ID FROM ADMIN
+		WHERE ID = "Admin";
+        
 #Register
 INSERT INTO User 
 	VALUES ("Jackson", "Jackson", null, "HALL", "pass", 'jackson@gmail.com');
