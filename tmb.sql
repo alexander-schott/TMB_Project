@@ -10,7 +10,8 @@ CREATE TABLE User
     last_name varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     passenger_email varchar(255) NOT NULL,
-    PRIMARY KEY (ID)
+    PRIMARY KEY (ID), 
+    CHECK (LENGTH(password) >= 8)
 );
 
 CREATE TABLE Admin
@@ -47,6 +48,7 @@ CREATE TABLE Card
     PRIMARY KEY (user_ID, type, purchase_date_time),
     FOREIGN KEY(user_ID) REFERENCES User(ID)
 		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE Trip
@@ -65,6 +67,7 @@ CREATE TABLE Trip
 		ON DELETE CASCADE,
     FOREIGN KEY (user_ID, card_type, card_purchase_date_time) REFERENCES Card(user_ID, type, purchase_date_time)
 		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE Review
@@ -80,7 +83,8 @@ CREATE TABLE Review
     station_name varchar(255) NOT NULL,
     PRIMARY KEY (passenger_ID, rid),
     FOREIGN KEY(passenger_ID) REFERENCES User(ID)
-		ON DELETE CASCADE,
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
     FOREIGN KEY(approver_ID) REFERENCES Admin(ID)
 		ON DELETE CASCADE,
     FOREIGN KEY(station_name) REFERENCES Station(name)
