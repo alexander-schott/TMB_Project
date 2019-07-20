@@ -97,6 +97,27 @@ INSERT INTO Card
 INSERT INTO Card
 	VALUES("Devin", "T-jove", now(), NULL, DATE_ADD(now(), INTERVAL 90 DAY));
     
-SELECT * FROM Card;
+#View Trips
+SELECT * FROM TRIP
+	WHERE user_ID = "Devin"
+    ORDER BY to_station_name;
+
+#Update Trip
+UPDATE Trip
+SET end_date_time = now(), to_station_name = "espanya"
+WHERE user_ID = "Devin" AND card_type = "T-mes" AND start_date_time = "specific date" AND purchase_date_time = "specific date";
+
+# REview passenger reviews
+SELECT * FROM REVIEW
+	WHERE status = "pending";
+    
+#Approve/reject Review
+UPDATE REVIEW
+SET status = "approved"
+WHERE #user info;
+
+
+
+
     
     

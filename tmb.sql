@@ -96,8 +96,8 @@ CREATE TABLE Admin_Add_Line
     line_name varchar(255) PRIMARY KEY,
     admin_ID varchar(255),
     date_time Datetime,
-    FOREIGN KEY(admin_ID) REFERENCES Admin(ID),
-    FOREIGN KEY(line_name) REFERENCES Line(name)
+    FOREIGN KEY(admin_ID) REFERENCES Admin(ID) ON DELETE CASCADE,
+    FOREIGN KEY(line_name) REFERENCES Line(name) ON DELETE CASCADE
 );
 
 CREATE TABLE Admin_Add_Station
@@ -105,8 +105,8 @@ CREATE TABLE Admin_Add_Station
     station_name varchar(255) PRIMARY KEY,
     admin_ID varchar(255),
     date_time Datetime,
-    FOREIGN KEY(admin_ID) REFERENCES Admin(ID),
-    FOREIGN KEY(station_name) REFERENCES Station(name)
+    FOREIGN KEY(admin_ID) REFERENCES Admin(ID) ON DELETE CASCADE,
+    FOREIGN KEY(station_name) REFERENCES Station(name) ON DELETE CASCADE
 );
 
 CREATE TABLE Station_On_Line
@@ -115,6 +115,6 @@ CREATE TABLE Station_On_Line
     line_name varchar(255),
     order_number int,
     PRIMARY KEY(station_name, line_name),
-    FOREIGN KEY(station_name) REFERENCES Station(name),
-    FOREIGN KEY(line_name) REFERENCES Line(name)
+    FOREIGN KEY(station_name) REFERENCES Station(name) ON DELETE CASCADE,
+    FOREIGN KEY(line_name) REFERENCES Line(name) ON DELETE CASCADE
 );
