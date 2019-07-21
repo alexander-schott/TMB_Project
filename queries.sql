@@ -91,7 +91,6 @@ UPDATE User
 SET ID = "Devin1"
 WHERE ID = "Devin";
 
-
 #remove lines added by a admin when admin deletes account
 DELETE FROM Line
 WHERE name IN (SELECT line_name
@@ -185,8 +184,38 @@ UPDATE REVIEW
 SET approval_status = "approved"
 WHERE passenger_ID = "Devin" AND rid = 1;
 
-#TODO: ADD STATION
-#TODO: ADD LINE
+#ADD STATION
+INSERT Station
+	VALUES("Arc de Triomf", "open", "Catalonia", "1 Carrer de Reeves", 666, Barcelona);
+    
+INSERT Station_On_Line
+	VALUES("Arc de Triomf", "L1", 9);
+    
+INSERT Admin_Add_Station
+	VALUES("Arc de Triomf", "admin", now());
+    
+#remove station
+
+DELETE FROM Station
+	WHERE name = "Arc de Triomf";
+
+#ADD LINE
+
+INSERT LINE
+	VALUES("L4");
+
+INSERT Admin_Add_Line
+	VALUES("L4", "admin", now());
+    
+#Remove station from Line
+DELETE FROM Station_On_Line
+	WHERE station_name = "catalunya" AND line_name = "L1";
+    
+#update station position on line
+UPDATE Station_On_Line
+	SET order_number = 10
+    WHERE station_name = "espanya" AND line_name = "L1";
+    
 
 
 
