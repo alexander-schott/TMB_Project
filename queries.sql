@@ -76,6 +76,7 @@ SELECT * From Station
 SELECT comment, passenger_ID, shopping, connection_speed FROM Review 
 	WHERE station_name = "espanya" AND approval_status = "approved";
     
+#average ratings for a specific station
 SELECT AVG(shopping), AVG(connection_speed) FROM Review
 	WHERE station_name = "espanya" AND approval_status = "approved";
     
@@ -90,8 +91,22 @@ UPDATE User
 SET ID = "Devin1"
 WHERE ID = "Devin";
 
-DELETE FROM User WHERE ID = "Devin";
 
+#remove lines added by a admin when admin deletes account
+DELETE FROM Line
+WHERE name IN (SELECT line_name
+	From Admin_Add_Line
+	WHERE admin_ID = "admin");
+    
+#remove stations added by an admin when admin is deleted
+DELETE FROM Station
+WHERE name IN (SELECT station_name
+	From Admin_Add_Station
+	WHERE admin_ID = "admin");
+    
+DELETE FROM User WHERE ID = "admin";
+
+    
 #Line summary
 #by name
 SELECT station_name, order_number FROM Station_On_Line
@@ -139,16 +154,27 @@ INSERT INTO Trip
 UPDATE Card
 SET uses_left = uses_left - 1
 WHERE user_ID = "Devin" AND type = "T-mes" AND purchase_date_time = '2019-05-10 10:34:10';
-    
-#View Trips
-SELECT * FROM TRIP
-	WHERE user_ID = "Devin"
-    ORDER BY to_station_name;
 
 #Finish Trip
 UPDATE Trip
 SET end_date_time = now(), to_station_name = "espanya"
 WHERE user_ID = "Devin" AND card_type = "T-mes" AND start_date_time = '2019-05-10 10:34:09' AND card_purchase_date_time = '2019-05-10 10:34:09';
+
+#View Trips
+# by destination
+SELECT * FROM TRIP
+	WHERE user_ID = "Devin"
+    ORDER BY to_station_name;
+    
+# by start point
+SELECT * FROM TRIP
+	WHERE user_ID = "Devin"
+    ORDER BY from_station_name;
+    
+# by start time
+SELECT * FROM TRIP
+	WHERE user_ID = "Devin"
+    ORDER BY start_date_time;
 
 # Review passenger reviews
 SELECT * FROM REVIEW
@@ -156,8 +182,13 @@ SELECT * FROM REVIEW
     
 #Approve/reject Review
 UPDATE REVIEW
-SET status = "approved"
-WHERE #user info;
+SET approval_status = "approved"
+WHERE passenger_ID = "Devin" AND rid = 1;
+
+#TODO: ADD STATION
+#TODO: ADD LINE
+
+
 
 
 
