@@ -27,16 +27,16 @@ INSERT INTO Line
 	VALUES("L1");
     
 INSERT INTO Card
-	VALUES("Devin", "T-mes", '2019-05-10 10:34:09' , 100, '2019-09-10');
+	VALUES("Devin", "T-mes", '2019-05-10 10:34:09' , NULL, '2019-09-09');
     
 INSERT INTO Card
-	VALUES("Devin", "T-10", now() , 100, '2019-10-10');
+	VALUES("Devin", "T-10", now() , 10, '2019-10-10');
     
 INSERT INTO Card
-	VALUES("Logan", "T-mes", '2019-05-10 10:34:09' , 100, '2019-06-10');
+	VALUES("Logan", "T-mes", '2019-05-10 10:34:09' , NULL, '2019-06-10');
     
 INSERT INTO Card
-	VALUES("Alexander", "T-mes", '2019-05-10 10:34:09' , 100, '2019-06-10');
+	VALUES("Alexander", "T-mes", '2019-05-10 10:34:09' , NULL, '2019-06-10');
     
 INSERT INTO Trip
 	VALUES("Devin", "T-mes", '2019-05-10 10:34:09', '2019-05-11 10:30:09', null, "espanya", null);
