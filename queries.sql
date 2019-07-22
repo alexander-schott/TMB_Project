@@ -157,7 +157,7 @@ SELECT name FROM Station ORDER BY name;
 
 #get the user's valid cards
 SELECT * FROM Card
-	WHERE user_ID = "Devin" AND expiration_date > now() AND (uses_left IS NULL OR uses_left > 0);
+	WHERE user_ID = "Devin" AND (expiration_date > now() OR expiration_date IS NULL) AND (uses_left IS NULL OR uses_left > 0);
     
 #start Trip
 INSERT INTO Trip
