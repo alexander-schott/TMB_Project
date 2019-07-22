@@ -21,10 +21,15 @@ SELECT first_name, last_name FROM User
 #Get all stations
 SELECT name FROM Station
 	ORDER BY name;
-    
+
 #Submit Review
 INSERT INTO Review
-	VALUES("Devin", 3, 5, 5, NULL, NULL, "pending", NULL, "catalunya");
+	VALUES("Devin", 
+    (SELECT count(*)
+		FROM Review as r
+		WHERE passenger_ID = "Devin") * 13 + 7,
+    5, 5, NULL, NULL, "pending", NULL, "catalunya");
+    
 
 #All reviews for a specific user
 SELECT * FROM Review
