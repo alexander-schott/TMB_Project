@@ -87,9 +87,17 @@ SELECT line_name FROM Station_On_Line
 #Edit profile stuff
 SELECT * FROM User;
 
+#update a user
 UPDATE User
 SET ID = "Devin1"
 WHERE ID = "Devin";
+
+#delete a user
+DELETE FROM User WHERE ID = "Logan";
+
+
+#Delete an Admin
+####################################
 
 #remove lines added by a admin when admin deletes account
 DELETE FROM Line
@@ -105,6 +113,7 @@ WHERE name IN (SELECT station_name
     
 DELETE FROM User WHERE ID = "admin";
 
+######################################
     
 #Line summary
 #by name
@@ -185,6 +194,7 @@ SET approval_status = "approved"
 WHERE passenger_ID = "Devin" AND rid = 1;
 
 #ADD STATION
+############################
 INSERT Station
 	VALUES("Arc de Triomf", "open", "Catalonia", "1 Carrer de Reeves", 666, Barcelona);
     
@@ -193,19 +203,20 @@ INSERT Station_On_Line
     
 INSERT Admin_Add_Station
 	VALUES("Arc de Triomf", "admin", now());
+#############################
     
 #remove station
-
 DELETE FROM Station
 	WHERE name = "Arc de Triomf";
 
 #ADD LINE
-
+##################################
 INSERT LINE
 	VALUES("L4");
 
 INSERT Admin_Add_Line
 	VALUES("L4", "admin", now());
+##################################
     
 #Remove station from Line
 DELETE FROM Station_On_Line
