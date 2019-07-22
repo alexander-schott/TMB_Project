@@ -30,7 +30,7 @@ INSERT INTO Card
 	VALUES("Devin", "T-mes", '2019-05-10 10:34:09' , NULL, '2019-09-09');
     
 INSERT INTO Card
-	VALUES("Devin", "T-10", now() , 10, '2019-10-10');
+	VALUES("Devin", "T-10", now() , 10, NULL);
     
 INSERT INTO Card
 	VALUES("Logan", "T-mes", '2019-05-10 10:34:09' , NULL, '2019-06-10');
